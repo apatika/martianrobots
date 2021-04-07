@@ -39,7 +39,6 @@ const start = () => {
   });
 
   rl.on('close', () => {
-    let robots = [];
     let Board: Board;
     const coordinates = fromInputToCoordinates(input[0]);
     if (coordinates) {
@@ -53,10 +52,12 @@ const start = () => {
       const initPosition = fromInputToVector(Board, input[index]);
       const movement = fromInputToMovements(input[index + 1]);
       if (initPosition && movement) {
-        robots.push(moveRobots(Board, initPosition, movement));
+        console.log(
+          chalk.green(moveRobots(Board, initPosition, movement)),
+        );
       }
     }
-    console.log(chalk.green(robots.join('')));
+
     console.log(chalk.green('Have a great day!'));
     process.exit(0);
   });
