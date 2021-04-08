@@ -15,9 +15,9 @@ describe('Board unit test', () => {
     expect(MockBoard.isOutside({ x: 11, y: 11 })).toBe(true);
   });
   test('check ClosePosition', () => {
-    const MockBoard = new Board({ x: 10, y: 10 });
-    const position: coordinates = { x: 3, y: 10 };
-    const position2: coordinates = { x: 4, y: 10 };
+    const MockBoard = new Board({ x: 2, y: 2 });
+    const position: coordinates = { x: 2, y: 2 };
+    const position2: coordinates = { x: 1, y: 2 };
     MockBoard.setClosePosition(position);
     expect(MockBoard.isClosePosition(position)).toBe(true);
     expect(MockBoard.isClosePosition(position2)).toBe(false);

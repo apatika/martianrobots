@@ -9,7 +9,9 @@ export const fromInputToCoordinates = (
   const _coords = { x: parseInt(x), y: parseInt(y) };
   if (
     _coords.x <= MAXIMUMCOORDVALUE &&
-    _coords.y <= MAXIMUMCOORDVALUE
+    _coords.y <= MAXIMUMCOORDVALUE &&
+    _coords.x >= 0 &&
+    _coords.y >= 0
   ) {
     return _coords;
   } else {

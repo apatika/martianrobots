@@ -32,7 +32,7 @@ const start = () => {
     } else if (input.length % 2 !== 0) {
       console.log(
         chalk.blue(
-          '> Press q + ENTER to see Results or add a new Robot: ',
+          '> Press q and ENTER to see Results or add a new Robot: ',
         ),
       );
     }

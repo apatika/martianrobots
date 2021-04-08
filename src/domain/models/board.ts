@@ -1,10 +1,11 @@
 import { coordinates } from '../types';
 export default class Board {
   limits: coordinates;
-  closePositions: coordinates[] = [];
+  closePositions: Set<string>;
 
   constructor(limits: coordinates) {
     this.limits = limits;
+    this.closePositions = new Set();
   }
   isOutside(coord: coordinates): boolean {
     return (
@@ -15,10 +16,10 @@ export default class Board {
     );
   }
   setClosePosition(closeposition: coordinates) {
-    this.closePositions.push(closeposition);
+    this.closePositions.add(JSON.stringify(closeposition));
   }
 
   isClosePosition(closeposition: coordinates): boolean {
-    return this.closePositions.includes(closeposition);
+    return this.closePositions.has(JSON.stringify(closeposition));
   }
 }

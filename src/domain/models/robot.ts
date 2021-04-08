@@ -15,7 +15,15 @@ export default class Robot {
     this.position.d = direction;
   }
   getPosition(): posVector {
-    return this.position;
+    return {
+      x: this.position.x,
+      y: this.position.y,
+      d: this.position.d,
+    };
+  }
+  setPosition(coords: coordinates) {
+    this.position.x = coords.x;
+    this.position.y = coords.y;
   }
   getCoordinate(): coordinates {
     return { x: this.position.x, y: this.position.y };
@@ -24,10 +32,14 @@ export default class Robot {
     this.position.l = 'LOST';
   }
 
+  isLost(): boolean {
+    return this.position.l ? true : false;
+  }
+
   getStringPosition(): string {
     const result =
-      this.position.x + ' ' + this.position.x + ' ' + this.position.d;
+      this.position.x + ' ' + this.position.y + ' ' + this.position.d;
 
-    return this.position.l ? result + ' ' + this.position.l : result;
+    return this.isLost() ? result + ' ' + this.position.l : result;
   }
 }

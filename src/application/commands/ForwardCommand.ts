@@ -1,5 +1,5 @@
 import Robot from '../../domain/models/robot';
-import { posVector } from '../../domain/types';
+import { coordinates, posVector } from '../../domain/types';
 import { Command } from './interface';
 
 export default class ForwardCommand implements Command {
@@ -12,13 +12,13 @@ export default class ForwardCommand implements Command {
   execute() {
     const direction = this.position.d;
     if (direction === 'N') {
-      this.position.y++;
+      this.position.y += 1;
     } else if (direction === 'E') {
-      this.position.x++;
+      this.position.x += 1;
     } else if (direction === 'S') {
-      this.position.y--;
+      this.position.y -= 1;
     } else if (direction === 'W') {
-      this.position.x--;
+      this.position.x -= 1;
     }
     if (
       this.robot.board.isOutside({
@@ -26,11 +26,16 @@ export default class ForwardCommand implements Command {
         y: this.position.y,
       })
     ) {
-      const coordinate = this.robot.getCoordinate();
+      const coordinate: coordinates = this.robot.getCoordinate();
       if (!this.robot.board.isClosePosition(coordinate)) {
         this.robot.board.setClosePosition(coordinate);
         this.robot.setLost();
       }
+    } else {
+      this.robot.setPosition({
+        x: this.position.x,
+        y: this.position.y,
+      });
     }
   }
 }
