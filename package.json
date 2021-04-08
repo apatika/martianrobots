@@ -5,6 +5,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
+    "test:cov": "jest --coverage --passWithNoTests",
     "build": "tsc",
     "prod": "node dist/index.js",
     "lint": "eslint src --ext js,ts"
